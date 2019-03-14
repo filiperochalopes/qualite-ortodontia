@@ -1,0 +1,12 @@
+@mixin centerx {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin pointer {
+  cursor: pointer;
+
+  &:hover{
+    background: rgba(0, 0, 0, 0.1);
+  }
+}
