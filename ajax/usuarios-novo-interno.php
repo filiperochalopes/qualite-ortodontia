@@ -28,9 +28,14 @@ $estado = $_POST["estado"];
 $cro = $_POST["cro"];
 $especialidade = $_POST["especialidade"];
 
-$permissoes = "{
-    \"configuracoes\" : true
-}";
+$permissoes = array(
+    "configuracoes" => true,
+    "validacao-cadastro" => false,
+    "iniciar-atendimento" => true,
+    "meus-atendimentos" => true
+);
+
+$permissoes = json_encode($permissoes);
 
 if(isset($nome)){
 
