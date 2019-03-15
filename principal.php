@@ -31,7 +31,7 @@ include "parts/structure/head.php";
                         <ul id="ulnav" class="col-12">                        
                             <?php
                             if(isFuncao($idusuario, "dentista")){ ?>
-                            <li class="mb-5"><a href="novo-atendimento"><span class="oi oi-plus"></span> Novo Atendimento</a></li>
+                            <li class="mb-5"><a href="iniciar-atendimento"><span class="oi oi-play-circle"></span> Iniciar Atendimento</a></li>
                             <li><a href="meus-atendimentos"><span class="oi oi-list"></span> Meus atendimentos</a></li>
                             <?php }else if(isFuncao($idusuario, "administrador")){ 
                                 if(num_dentistas()[1] > 0){ ?>
