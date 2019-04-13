@@ -339,12 +339,13 @@ $(document).ready( function(){
 
   /* --------- FILTRO DE MÊS DE ATENDIMENTOS ---------- */
 
-  $("#filtro_atendimentos_mes").change(function(){
-    if($(this).val() == "todos"){
-      window.location = location.protocol + '//' + location.host + location.pathname;
-    }else{
-      window.location = location.protocol + '//' + location.host + location.pathname+"?filtro="+$(this).val();
-    }    
+  $("#filtrar_atendimentos").click(function(){
+      if($("#filtro_atendimentos_mes").val() == '0' && $("#dentista_id").val() == ""){
+        window.location = location.protocol + '//' + location.host + location.pathname
+      }else{
+        window.location = location.protocol + '//' + location.host + location.pathname+"?mes="+$("#filtro_atendimentos_mes").val()+"&dentista="+$("#dentista_id").val();
+      }
+         
   })
 
   /* --------- FILTRO DE CONVÊNIO DE ATENDIMENTOS ---------- */

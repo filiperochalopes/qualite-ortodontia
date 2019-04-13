@@ -38,6 +38,7 @@ include "parts/structure/head.php";
                             <button class="btn btn-outline-secondary" type="button" id="filtro_relatorio_guias_dentista_bt">Pesquisar</button>
                         </div>
                     </div>
+                    
                     <div class="form-control middle hint" id="dentistas-hint" data-input-hint="filtro_relatorio_guias_dentista">
                         <ul>
                         </ul>

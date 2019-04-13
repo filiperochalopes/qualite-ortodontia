@@ -43,6 +43,23 @@ include "parts/structure/head.php";
                         }
                         ?>  
                     </select><br/>
+
+                    <!-- Filtro de dentista -->
+
+                    <div class="input-group mb-4">
+                        <input type="text" class="form-control middle hint-input" type="text" name="filtro_relatorio_guias_dentista" id="filtro_relatorio_guias_dentista" placeholder="Nome do dentista" autocomplete="off" autofocus >
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="filtrar_atendimentos">Pesquisar</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-control middle hint" id="dentistas-hint" data-input-hint="filtro_relatorio_guias_dentista">
+                        <ul>
+                        </ul>
+                    </div>
+
+                    <input type="hidden" name="dentista" id="dentista_id"/>
+
                     <table class="table-responsive table-sm simple">
                         <thead>
                             <tr>
@@ -76,8 +93,18 @@ include "parts/structure/head.php";
 
                     $mes_atual = 0; //reset
                     
-                    if(isset($_GET["filtro"])){
-                        $pesquisaguias = $mydb->query("SELECT * FROM guias WHERE datahora LIKE '".$_GET['filtro']."%' ORDER BY datahora DESC");
+                    if(isset($_GET["mes"])){
+                        // Filtrar
+                        $mes = $_GET["mes"];
+                        $dentista = $_GET["dentista"];
+                        if($mes != 0 && $dentista != ""){
+                            $searchStr = "datahora LIKE '".$mes."%' AND dentista = '$dentista' ";
+                        }else if($mes != 0){
+                            $searchStr = "datahora LIKE '".$mes."%' ";
+                        }else{
+                            $searchStr = "dentista = '$dentista' ";
+                        }
+                        $pesquisaguias = $mydb->query("SELECT * FROM guias WHERE $searchStr ORDER BY datahora DESC");
                     }else{
                         $pesquisaguias = $mydb->query("SELECT * FROM guias ORDER BY datahora DESC");
                     }
