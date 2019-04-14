@@ -31,7 +31,7 @@ include "parts/structure/head.php";
                 <div class="container">
                     <h1>Atendimentos</h1>
                     <p class="mb-4">Lista de todos os atendimentos com respectivos <i>status</i> de pagamento por parte do convênio ou particular (breve) e repasses para os profissionais</p>
-                    <select id="filtro_atendimentos_mes" name="filtro_atendimentos_mes" class="form-control middle">
+                    <select id="filtro_atendimentos_mes_" name="filtro_atendimentos_mes" class="form-control middle">
                         <option value="0">Selecione um mês</option>
                         <option value='todos'><strong>Ver todos</strong></option>
                         <option disabled="disabled">----</option>   

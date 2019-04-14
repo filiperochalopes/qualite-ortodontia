@@ -48,10 +48,9 @@ include "parts/structure/head.php";
                             <tr>
                                 <th>Guia</th>
                                 <th>Profissional</th>
-                                <th>Atendimento</th>
-                                <th>Convênio</th>
-                                <th>Pagamento</th>
-                                <th>Data e hora</th>
+                                <th>Paciente</th>
+                                <th>Status</th>
+                                <th>Edição</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -92,10 +91,9 @@ include "parts/structure/head.php";
                         echo "<tr>
                         <td>".$row["numero"]."</td>
                         <td>".get_object_perfil($row["dentista"])->nome."</td>
-                        <td>".get_atendimento($row["atendimento"])[0]."</td>
-                        <td>".get_convenio($row["convenio"])."</td>
-                        <td class='pagamento bol_".$row["b_pago"]."'>valor pago</td>
-                        <td class='datahora'>".$row["datahora"]."$mes_novo</td>
+                        <td>".$row["paciente"]."</td>
+                        <td> Status </td>
+                        <td> Editar </td>
                         </tr>";
                         
                         $mes_atual = $datetime->format('m');
