@@ -323,7 +323,7 @@ function converter_year_month($str){
         "", "Janeiro",
         "Fevereiro",
         "Março",
-        "Março",
+        "Abril",
         "Maio",
         "Junho",
         "Julho",
@@ -334,7 +334,7 @@ function converter_year_month($str){
         "Dezembro"
     );
 
-    $visivel = $meses[substr($str, 4, 2)]." de ".substr($str, 0, 4);
+    $visivel = $meses[intval(substr($str, 4, 2))]." de ".substr($str, 0, 4);
     $formatado = substr($str, 0, 4)."-".substr($str, 4, 2);
     return [$visivel, $formatado];
 }

@@ -80,7 +80,7 @@ include "parts/structure/head.php";
                         "", "Janeiro",
                         "Fevereiro",
                         "Março",
-                        "Março",
+                        "Abril",
                         "Maio",
                         "Junho",
                         "Julho",
@@ -114,8 +114,13 @@ include "parts/structure/head.php";
                         $mes_novo = $datetime->format('m');
                         $ano_novo = $datetime->format('Y');
 
+                        console_log($datetime);
+                        console_log($mes_novo);
+                        console_log($ano_novo);
+                        console_log($meses[intval($mes_novo)]);
+
                         if($mes_novo != $mes_atual){
-                            echo "<tr><td colspan='7' class='month'>".$meses[$mes_novo]." de ".$ano_novo."</td></tr>";
+                            echo "<tr><td colspan='7' class='month'>".$meses[intval($mes_novo)]." de ".$ano_novo."</td></tr>";
                         }
 
                         echo "<tr>

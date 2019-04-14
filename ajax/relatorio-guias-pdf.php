@@ -68,7 +68,7 @@ $meses = array(
 "", "Janeiro",
 "Fevereiro",
 "Março",
-"Março",
+"Abril",
 "Maio",
 "Junho",
 "Julho",
@@ -94,7 +94,7 @@ $mes_novo = $datetime->format('m');
 $ano_novo = $datetime->format('Y');
 
 if($mes_novo != $mes_atual){
-    $html .= "<tr><td colspan='4' class='month'>>> ".$meses[$mes_novo]." de ".$ano_novo."</td></tr>";
+    $html .= "<tr><td colspan='4' class='month'>>> ".$meses[intval($mes_novo)]." de ".$ano_novo."</td></tr>";
 }
 
 $html .= "<tr>

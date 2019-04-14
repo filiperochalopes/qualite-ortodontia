@@ -43,7 +43,7 @@ include "parts/structure/head.php";
                             </ul>
                         </div>
                         <select id="atendimento" name="atendimento" class="form-control middle">
-                        <option value="0">Selecione uma opção de atendimento</option>
+                        <option value="0">Selecione uma modalidade de atendimento</option>
                         <?php
                         $pesquisaatendimentos = $mydb->query("SELECT * FROM atendimentos");
                         while($row = $pesquisaatendimentos->fetch_assoc()){
@@ -64,7 +64,7 @@ include "parts/structure/head.php";
                         <!-- <input class="form-control middle" type="text" name="nomeconvenio" id="nomeconvenio" placeholder="Nome do convênio"/> -->
                         <input class="form-control middle" type="number" name="valor" id="valor" step=".01" placeholder="Valor esperado de recebimento"/>
                         <textarea class="form-control bottom" type="text" name="descricao" id="descricao" placeholder="Descrição do procedimento" ></textarea>               
-                        <button type="submit" class="btn btn-block btn-primary mt-4">Iniciar Atendimento</button>
+                        <button type="submit" class="btn btn-block btn-primary mt-4">Cadastrar Atendimento</button>
                     </form>
                 </div>
                 <?php
