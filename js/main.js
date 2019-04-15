@@ -431,6 +431,37 @@ $(document).ready( function(){
     }
   });
 
+  $("#dentista_id").change(function(){
+    console.log("oi")
+    $.ajax({
+      url: "ajax/filtrar-modalidade-atendimento.php",
+      method: "GET",
+      data: { val : $("#dentista_id").val()},
+      beforeSend: function (xhr) {
+        aviso({
+          mensagem : "<div class='spinner'><span class='oi oi-reload'></span></div> Carregando...",
+          class : "grey"
+        });
+      }
+    }).done(function (data) {
+      data = JSON.parse(data);
+      console.log(data);
+      aviso(data);
+      if(data.class == "green"){
+        // Carrega e libera campos
+        $("#atendimento").attr("disabled", false);
+        $("#atendimento option[value=0]").text("Selecione uma modalidade de atendimento");
+        data.modalidades.forEach( v => {
+          
+        })
+      }
+    });
+  })
+
+  $("#atendimento:disabled").click( function(){
+    $("#filtro_relatorio_guias_dentista").focus();
+  })
+
   /* --------- INICIAR ATENDIMENTO ---------- */
 
   // Verificação
@@ -607,7 +638,7 @@ $(document).ready( function(){
     //hack para filtro do relatório por dentistas
     if(input_id == "filtro_relatorio_guias_dentista"){
       var dentista_id = $(this).attr("data-usuario");
-      $("#dentista_id").val(dentista_id);
+      $("#dentista_id").val(dentista_id).change();
     }
     
     closehint(input_id, value);

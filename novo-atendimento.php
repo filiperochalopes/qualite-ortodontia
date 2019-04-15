@@ -35,21 +35,21 @@ include "parts/structure/head.php";
                             </ul>
                         </div>
 
-                        <input type="hidden" name="dentista_id" id="dentista_id"required/>
+                        <input type="hidden" name="dentista_id" id="dentista_id" required/>
 
                         <input class="form-control middle hint-input" type="text" name="paciente" id="paciente" placeholder="Nome do paciente" autocomplete="off" required/>
                         <div class="form-control middle hint" id="pacientes-hint" data-input-hint="paciente">
                             <ul>
                             </ul>
                         </div>
-                        <select id="atendimento" name="atendimento" class="form-control middle">
-                        <option value="0">Selecione uma modalidade de atendimento</option>
+                        <select id="atendimento" name="atendimento" class="form-control middle" disabled>
+                        <option value="0" disabled selected>Selecione um dentista</option>
                         <?php
                         $pesquisaatendimentos = $mydb->query("SELECT * FROM atendimentos");
                         while($row = $pesquisaatendimentos->fetch_assoc()){
                             echo "<option value='".$row["id"]."'>".$row["atendimento"]."</option>";
                         }
-                        ?>
+                        ?> -->
                         </select>
                         <select id="convenio" name="convenio" class="form-control middle">
                         <option value="0">Selecione um convênio</option>
