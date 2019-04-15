@@ -11,7 +11,7 @@ if($guia != ""){
     // echo $pesquisaguia_verificada->num_rows;
 
     if($pesquisaguia_verificada->num_rows){
-        $sql = "UPDATE guias SET atendido = '1' WHERE numero = '$guia' ";
+        $sql = "UPDATE guias SET atendido = '1', status = 'em atendimento' WHERE numero = '$guia' ";
         $mydb->query($sql);
 
         $resposta = array(

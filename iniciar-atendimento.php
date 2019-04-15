@@ -27,20 +27,16 @@ include "parts/structure/head.php";
                     <h1>Iniciar Atendimento</h1>
                     <p class="mb-4">Selecione o o paciente que deseja iniciar atendimento</p>
 
-                    <ul class="list-group">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Morbi leo risus</li>
-                        <li class="list-group-item">Porta ac consectetur ac</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
+                    <ul id="selecionar_guia" class="list-group mb-4">
+                        <?php
+                        $pesquisaguias = $mydb->query("SELECT * FROM guias WHERE dentista = '$idusuario' AND status = 'aguardando atendimento'");
+                        while($row = $pesquisaguias->fetch_assoc()){
+                            echo "<li class=\"list-group-item\" data-guia='".$row["numero"]."'>".$row["numero"]." - ".$row["paciente"]." - <span class='status_atendimento'>".$row["status"]."</span></li>";
+                        }
+                        ?>
                     </ul>
 
-                    <?php
-                    $pesquisaatendimentos = $mydb->query("SELECT * FROM atendimentos");
-                    while($row = $pesquisaatendimentos->fetch_assoc()){
-                        echo "<option value='".$row["id"]."'>".$row["atendimento"]."</option>";
-                    }
-                    ?>
+                    <p class="mb-4">Ou preencha manualmente com o número da guia</p>
                     
                     <form id="form-iniciar-atendimento" method="post">
                         <input class="form-control top" type="number" name="guia" id="guia" placeholder="Número da guia" autocomplete="off" required/>

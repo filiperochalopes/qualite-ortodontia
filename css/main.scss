@@ -317,6 +317,14 @@ button.rejeitar{
     display: none;
 }
 
+#selecionar_guia{
+
+    li:hover{
+        cursor: pointer;
+        background: #ccc;
+    }
+}
+
 /* --------- ANIMATION ----------- */
 
 .spinner{

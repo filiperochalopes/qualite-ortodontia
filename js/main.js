@@ -501,6 +501,8 @@ $(document).ready( function(){
   $("#form-iniciar-atendimento").submit(function (e) {
     e.preventDefault();
 
+    $("#selecionar_guia li[data-guia="+$("#guia").val()+"]").hide();
+
       $.ajax({
         url: "ajax/atendimento-iniciar.php",
         method: "POST",
@@ -516,11 +518,18 @@ $(document).ready( function(){
         aviso(data);
         
         if(data.class=="green"){
-          $("#form-iniciar-atendimento").reset();
+          document.getElementById("form-iniciar-atendimento").reset();
           $("#iniciar_atendimento_sec").hide();
         }
       });
   });
+
+  // Preenchimento e clique automatico pela seleção em lista
+
+  $("#selecionar_guia").on("click", "li", function(){
+    $("#guia").val($(this).attr("data-guia"));
+    $("#verificar_informacoes").click();
+  })
 
   /* --------- UPDATE GUIA ---------- */
 

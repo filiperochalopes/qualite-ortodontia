@@ -42,11 +42,10 @@ include "parts/structure/head.php";
                             <ul>
                             </ul>
                         </div>
-
                         <select id="atendimento" name="atendimento" class="form-control middle" disabled>
                         <option value="0" disabled selected>Selecione um dentista</option>
+   
                         </select>
-                        
                         <select id="convenio" name="convenio" class="form-control middle">
                         <option value="0">Selecione um convênio</option>
                         <?php
