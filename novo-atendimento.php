@@ -42,15 +42,11 @@ include "parts/structure/head.php";
                             <ul>
                             </ul>
                         </div>
+
                         <select id="atendimento" name="atendimento" class="form-control middle" disabled>
                         <option value="0" disabled selected>Selecione um dentista</option>
-                        <?php
-                        $pesquisaatendimentos = $mydb->query("SELECT * FROM atendimentos");
-                        while($row = $pesquisaatendimentos->fetch_assoc()){
-                            echo "<option value='".$row["id"]."'>".$row["atendimento"]."</option>";
-                        }
-                        ?> -->
                         </select>
+                        
                         <select id="convenio" name="convenio" class="form-control middle">
                         <option value="0">Selecione um convênio</option>
                         <?php

@@ -450,9 +450,10 @@ $(document).ready( function(){
       if(data.class == "green"){
         // Carrega e libera campos
         $("#atendimento").attr("disabled", false);
-        $("#atendimento option[value=0]").text("Selecione uma modalidade de atendimento");
+        $("#atendimento").text("");
+        $("#atendimento").append(`<option value='0' disabled selected>Selecione uma modalidade de atendimento</option>`)
         data.modalidades.forEach( v => {
-          
+          $("#atendimento").append(`<option value='${v[0]}'>${v[1]}</option>`)
         })
       }
     });

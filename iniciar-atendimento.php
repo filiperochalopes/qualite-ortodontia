@@ -25,7 +25,23 @@ include "parts/structure/head.php";
             <div class="col-sm-10 col-md-9 pt-5">
                 <div class="container">
                     <h1>Iniciar Atendimento</h1>
-                    <p class="mb-4">Digite o número da guia e confirme os dados de atendimento</p>
+                    <p class="mb-4">Selecione o o paciente que deseja iniciar atendimento</p>
+
+                    <ul class="list-group">
+                        <li class="list-group-item">Cras justo odio</li>
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Morbi leo risus</li>
+                        <li class="list-group-item">Porta ac consectetur ac</li>
+                        <li class="list-group-item">Vestibulum at eros</li>
+                    </ul>
+
+                    <?php
+                    $pesquisaatendimentos = $mydb->query("SELECT * FROM atendimentos");
+                    while($row = $pesquisaatendimentos->fetch_assoc()){
+                        echo "<option value='".$row["id"]."'>".$row["atendimento"]."</option>";
+                    }
+                    ?>
+                    
                     <form id="form-iniciar-atendimento" method="post">
                         <input class="form-control top" type="number" name="guia" id="guia" placeholder="Número da guia" autocomplete="off" required/>
                                        
