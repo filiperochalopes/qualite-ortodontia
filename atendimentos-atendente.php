@@ -93,7 +93,7 @@ include "parts/structure/head.php";
                         <td>".get_object_perfil($row["dentista"])->nome."</td>
                         <td>".$row["paciente"]."</td>
                         <td> Status </td>
-                        <td> Editar </td>
+                        <td> <button class='editar' data-toggle=\"modal\" data-target=\"#exampleModal\" data-guia=\"".$row["numero"]."\">Editar</button> </td>
                         </tr>";
                         
                         $mes_atual = $datetime->format('m');
@@ -102,6 +102,27 @@ include "parts/structure/head.php";
                     </tbody>
                     </table>
                 </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Editar guia</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div id="modal_body" class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button data-dismiss="modal" type="button" id="submit_modal" class="btn btn-primary">Salvar Alterações</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
                 <?php
                 include "parts/structure/footer.php";
                 ?>

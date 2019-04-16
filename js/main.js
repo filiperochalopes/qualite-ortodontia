@@ -337,6 +337,63 @@ $(document).ready( function(){
       });
   });
 
+  /* --------- ATENDIMENTOS ATENDENTE ---------- */
+
+  $(".editar").click( function(){
+    console.log($(this).attr("data-guia"));
+    
+      $.ajax({
+        url: "ajax/modal-edicao.php",
+        method: "GET",
+        data: { guia : $(this).attr("data-guia")},
+        beforeSend: function (xhr) {
+          aviso({
+            mensagem : "<div class='spinner'><span class='oi oi-reload'></span></div> Carregando...",
+            class : "grey"
+          });
+        }
+      }).done(function (data) {
+        data = JSON.parse(data);
+        if(data.class == "green"){
+          // carrega inputs
+          $("#modal_body").html(data.htmlForm);
+          $("#submit_modal").addClass("editar_guia");
+          $("#submit_modal").attr("data-guia", data.json.numero);
+        }else{
+          $("#modal_body").html(data.mensagem);
+          aviso(data);
+        }
+        
+        console.log(data)
+      });
+  })
+
+  // Edita guia
+  $(".modal").on("click", ".editar_guia", function(){
+    console.log("oi")
+    $.ajax({
+      url: "ajax/modal-edicao.php",
+      method: "POST",
+      data: { 
+        guia : $(this).attr("data-guia"),
+        novaGuia : $("#edit_guia").val(),
+        nome : $("#edit_paciente").val()
+      },
+      beforeSend: function (xhr) {
+        aviso({
+          mensagem : "<div class='spinner'><span class='oi oi-reload'></span></div> Carregando...",
+          class : "grey"
+        });
+      }
+    }).done(function (data) {
+      data = JSON.parse(data);
+      aviso(data)
+      
+      console.log(data)
+    });
+  })
+
+
   /* --------- FILTRO DE MÊS DE ATENDIMENTOS ---------- */
 
   // Automático
