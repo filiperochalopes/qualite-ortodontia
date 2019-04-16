@@ -644,28 +644,42 @@ $(document).ready( function(){
 
   /* --------- HINTS ---------- */
 
+  function hinted(field, elem){
+    var hintBox = `${field}-hint`;
+
+    $.ajax({
+      url: `ajax/hint/${field}.php`,
+      method: "GET",
+      data: { "str" : elem.val() },
+    }).done(function (data) {
+      $("#"+hintBox+" ul").html("");    
+      data = JSON.parse(data);
+      if(data.length){
+        $("#"+hintBox).show();
+        data.forEach( function(element, index, array){
+          $("#"+hintBox+" ul").append("<li>"+element+"</li>");
+        })
+      }else{
+        $("#"+hintBox).hide();
+        $("#"+hintBox+" ul").html("");
+      }        
+      console.log(data);
+    });
+  }
+
   $("#paciente").keyup(function (e) {
     e.preventDefault();
-    var hintBox = "pacientes-hint";
+    hinted("pacientes", $(this))
+  });
 
-      $.ajax({
-        url: "ajax/hint/pacientes.php",
-        method: "GET",
-        data: { "nome" : $(this).val() },
-      }).done(function (data) {
-        $("#"+hintBox+" ul").html("");    
-        data = JSON.parse(data);
-        if(data.length){
-          $("#"+hintBox).show();
-          data.forEach( function(element, index, array){
-            $("#"+hintBox+" ul").append("<li>"+element+"</li>");
-          })
-        }else{
-          $("#"+hintBox).hide();
-          $("#"+hintBox+" ul").html("");
-        }        
-        console.log(data);
-      });
+  $("#valor").keyup(function (e) {
+    e.preventDefault();
+    hinted("valor", $(this))
+  });
+
+  $("#descricao").keyup(function (e) {
+    e.preventDefault();
+    hinted("descricao", $(this))
   });
 
   $("#filtro_relatorio_guias_dentista").keyup(function (e) {

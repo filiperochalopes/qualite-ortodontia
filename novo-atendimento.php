@@ -29,6 +29,8 @@ include "parts/structure/head.php";
                     <form id="form-novo-atendimento" method="post">
                         <input class="form-control top" type="number" name="numero" id="numero" placeholder="Número da guia" autocomplete="off" required/>
                         
+                        <!-- Campo com hint dentista -->
+
                         <input type="text" class="form-control middle hint-input" type="text" name="filtro_relatorio_guias_dentista" id="filtro_relatorio_guias_dentista" placeholder="Nome do dentista" autocomplete="off" required>
                         <div class="form-control middle hint" id="dentistas-hint" data-input-hint="filtro_relatorio_guias_dentista">
                             <ul>
@@ -37,15 +39,21 @@ include "parts/structure/head.php";
 
                         <input type="hidden" name="dentista_id" id="dentista_id" required/>
 
+                        <!-- Campo com hint paciente -->
+
                         <input class="form-control middle hint-input" type="text" name="paciente" id="paciente" placeholder="Nome do paciente" autocomplete="off" required/>
                         <div class="form-control middle hint" id="pacientes-hint" data-input-hint="paciente">
                             <ul>
                             </ul>
                         </div>
+
+                        <!-- Select de modalidade que só abre após colocar dentista para filtrar -->
                         <select id="atendimento" name="atendimento" class="form-control middle" disabled>
                         <option value="0" disabled selected>Selecione um dentista</option>
    
                         </select>
+
+                        <!-- Select de convênios -->
                         <select id="convenio" name="convenio" class="form-control middle">
                         <option value="0">Selecione um convênio</option>
                         <?php
@@ -56,9 +64,22 @@ include "parts/structure/head.php";
                         }
                         ?>
                         </select>
+
+
                         <!-- <input class="form-control middle" type="text" name="nomeconvenio" id="nomeconvenio" placeholder="Nome do convênio"/> -->
-                        <input class="form-control middle" type="number" name="valor" id="valor" step=".01" placeholder="Valor esperado de recebimento"/>
-                        <textarea class="form-control bottom" type="text" name="descricao" id="descricao" placeholder="Descrição do procedimento" ></textarea>               
+                        <input class="form-control middle hint-input" type="number" name="valor" id="valor" step=".01" placeholder="Valor esperado de recebimento" autocomplete="off"/>
+                        <div class="form-control middle hint" id="valor-hint" data-input-hint="valor">
+                            <ul>
+                            </ul>
+                        </div>
+
+                        <!-- Descrição do procedimento com hint -->
+                        <textarea class="form-control bottom hint-input" type="text" name="descricao" id="descricao" placeholder="Descrição do procedimento" ></textarea>
+                        <div class="form-control middle hint" id="descricao-hint" data-input-hint="descricao">
+                            <ul>
+                            </ul>
+                        </div>
+
                         <button type="submit" class="btn btn-block btn-primary mt-4">Cadastrar Atendimento</button>
                     </form>
                 </div>

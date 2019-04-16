@@ -2,7 +2,7 @@
 
 require("../../config-db.php");
 
-$get_name = $_GET["nome"];
+$get_name = $_GET["str"];
 
 if($get_name != ""){
     $pesquisapacientes = $mydb->query("SELECT * FROM pacientes WHERE nome LIKE '%$get_name%' ORDER BY nome ASC LIMIT 5");
