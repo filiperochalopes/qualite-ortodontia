@@ -31,7 +31,7 @@ include "parts/structure/head.php";
                 <div class="container">
                     <h1>Atendimentos</h1>
                     <p class="mb-4">Lista de todos os atendimentos com respectivos <i>status</i> de pagamento por parte do convênio ou particular (breve) e repasses para os profissionais</p>
-                    <select id="filtro_atendimentos_mes_" name="filtro_atendimentos_mes" class="form-control middle">
+                    <select id="filtro_atendimentos_mes_" name="filtro_atendimentos_mes" class="form-control middle"> 
                         <option value="0">Selecione um mês</option>
                         <option value='todos'><strong>Ver todos</strong></option>
                         <option disabled="disabled">----</option>   
@@ -58,7 +58,11 @@ include "parts/structure/head.php";
                         </ul>
                     </div>
 
-                    <input type="hidden" name="dentista" id="dentista_id"/>
+                    <form action="ajax/relatorio-guias-pagas-pdf.php" method="post">
+                        <input type="hidden" name="convenio" value="<?=$_GET["filtro"]?>"/>
+                        <input type="hidden" name="dentista" id="dentista_id"/>
+                        <button type="submit" class="btn btn-block btn-primary mt-3 mb-5" id="relatorio_guias_pdf">Gerar relatório da busca em PDF</button>
+                    </form>
 
                     <table class="table-responsive table-sm simple">
                         <thead>
