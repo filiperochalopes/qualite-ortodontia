@@ -25,7 +25,7 @@ if(isset($_POST["guia"])){
 if(isset($_GET["guia"])){
     $guia = $_GET["guia"];
 
-    $pesquisaguia = $mydb->query("SELECT * FROM guias WHERE numero = '$guia' AND status = 'aguardando atendimento' ");
+    $pesquisaguia = $mydb->query("SELECT * FROM guias WHERE numero = '$guia' ");
 
     if($pesquisaguia->num_rows > 0){
         
