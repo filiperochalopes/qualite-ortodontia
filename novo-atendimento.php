@@ -49,7 +49,7 @@ include "parts/structure/head.php";
 
                         <!-- Select de modalidade que só abre após colocar dentista para filtrar -->
                         <select id="atendimento" name="atendimento" class="form-control middle" disabled>
-                        <option value="0" disabled selected>Selecione um dentista</option>
+                        <option value="0" disabled selected>Selecione uma modalidade de atendimento</option>
    
                         </select>
 
