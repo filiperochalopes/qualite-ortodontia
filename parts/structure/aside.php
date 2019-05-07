@@ -28,7 +28,7 @@
             <?php } ?>
 
             <?php if(permissao("atendimentos")){ ?>
-            <li class="link" data-link="atendimentos"><span class="oi oi-list"></span><span class="navitem ml-2">Atendimentos</span></li>
+            <li class="link" data-link="atendimentos"><span class="oi oi-list"></span><span class="navitem ml-2">Todos os Atendimentos</span></li>
             <?php } ?>
 
             <?php if(permissao("atendimentos-atendente")){ ?>

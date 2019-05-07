@@ -58,11 +58,25 @@ include "parts/structure/head.php";
                         </ul>
                     </div>
 
+                    <?php
+                    
+                    $mes = isset($_GET["mes"]) ? $_GET["mes"] : null;
+                    $dentista = isset($_GET["dentista"]) ? $_GET["dentista"] : null;
+                    
+                    if($mes || $dentista){
+
+                    ?>
+
+                    <input type="hidden" name="dentista_id" id="dentista_id" />
+                    
+                    
                     <form action="ajax/relatorio-guias-pagas-pdf.php" method="post">
-                        <input type="hidden" name="convenio" value="<?=$_GET["filtro"]?>"/>
-                        <input type="hidden" name="dentista" id="dentista_id"/>
+                        <input type="hidden" name="mes" value="<?=$mes?>"/>
+                        <input type="hidden" name="dentista" id="dentista" value="<?=$dentista?>"/>
                         <button type="submit" class="btn btn-block btn-primary mt-3 mb-5" id="relatorio_guias_pdf">Gerar relatório da busca em PDF</button>
                     </form>
+
+                    <?php } ?>
 
                     <table class="table-responsive table-sm simple">
                         <thead>
@@ -100,7 +114,6 @@ include "parts/structure/head.php";
                     if(isset($_GET["mes"])){
                         // Filtrar
                         $mes = $_GET["mes"];
-                        $dentista = $_GET["dentista"];
                         if($mes != 0 && $dentista != ""){
                             $searchStr = "datahora LIKE '".$mes."%' AND dentista = '$dentista' ";
                         }else if($mes != 0){

@@ -3,13 +3,20 @@
 require("../functions.php");
 require("../config-db.php");
 
-if(isset($_POST["convenio"])){
-    $convenio_id = $_POST["convenio"];
-    $convenio = get_convenio($convenio_id);
+if(isset($_POST["mes"])){
+    $filtro_mes_ano = $_POST["mes"];
+    $mes = explode("-", $filtro_mes_ano)[1];
+    $ano = explode("-", $filtro_mes_ano)[0];
+}else{
+    $mes = null;
 }
-if(isset($_POST["dentista"])){
-$dentista_id = $_POST["dentista"];
-$dentista = get_object_perfil($dentista_id)->nome;
+
+if($_POST["dentista"] != ""){
+    $dentista_id = $_POST["dentista"];
+    $dentista = get_object_perfil($dentista_id)->nome;
+}else{
+    $dentista = null;
+    $dentista_id = null;
 }
 
 require_once 'dompdf/autoload.inc.php';
@@ -55,43 +62,60 @@ small{
 
 </style>';
 
+$meses = array(
+    "", "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro"
+    );
 
-$html = '<h1> Relatório de guias não pagas <small>do convênio <span class="convenio">'.$convenio.'</span></small></h1>';
-$html .= '<h3>'.date("d/m/Y H:i:s").'</h3>';
+$filtros_utilizados = array();
+if($mes){ 
+    array_push( $filtros_utilizados, "Mês: {$meses[$mes]}" );  
+    array_push( $filtros_utilizados, "Ano: {$ano}" );  
+}
+if($dentista) { array_push( $filtros_utilizados, "Dentista: ".$dentista); }
+
+$html = '<h1> Relatório de guias por busca.</h1>';
+$html .= '<h3>Filtros</h3>';
+foreach ($filtros_utilizados as $filtro) {
+    $html .= $filtro."<br/>";
+}
+$html .= '<h3>Data e hora da consulta: '.date("d/m/Y H:i:s").'</h3>';
 $html .= '<table class="table-responsive table-sm simple">
 <thead>
     <tr>
         <th>Guia</th>
         <th>Profissional</th>
         <th>Convênio</th>
+        <th>Pagamento</th>
+        <th>Valor de repasse</th>
+        <th>Repasse</th>
         <th>Data e hora</th>
     </tr>
 </thead>
 <tbody>
-    <tr class="space"><td></td><td></td><td></td><td></td></tr>';
+    <tr class="space"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>';
 
-$meses = array(
-"", "Janeiro",
-"Fevereiro",
-"Março",
-"Abril",
-"Maio",
-"Junho",
-"Julho",
-"Agosto",
-"Setembro",
-"Outubro",
-"Novembro",
-"Dezembro"
-);
-
-$nome_relatorio = "relatorio_CONVENIO_guias_nao_pagas_".date("d_m_Y_H_i_s"); //reset
+$nome_relatorio = "relatorio_por_busca_".date("d_m_Y_H_i_s"); //reset
 $mes_atual = 0; //reset
 
-if(isset($convenio_id)){
-$pesquisaguias = $mydb->query("SELECT * FROM guias WHERE convenio = ".$convenio_id." AND b_pago = 0 ORDER BY datahora DESC");
+if($mes && $dentista_id){
+    $pesquisaguias = $mydb->query("SELECT * FROM guias WHERE MONTH(datahora) = '{$mes}' AND YEAR(datahora) = '{$ano}' AND dentista = {$dentista_id} ORDER BY datahora DESC");
+}else if($dentista_id){
+    $pesquisaguias = $mydb->query("SELECT * FROM guias WHERE dentista = {$dentista_id} ORDER BY datahora DESC");    
+}else if($mes){
+    $pesquisaguias = $mydb->query("SELECT * FROM guias WHERE MONTH(datahora) = '{$mes}' AND YEAR(datahora) = '{$ano}' ORDER BY datahora DESC");    
 }else{
-$pesquisaguias = $mydb->query("SELECT * FROM guias WHERE b_pago = 0 ORDER BY datahora DESC");
+    $pesquisaguias = $mydb->query("SELECT * FROM guias ORDER BY datahora DESC");    
 }
 
 while($row = $pesquisaguias->fetch_assoc()){
@@ -100,13 +124,20 @@ $mes_novo = $datetime->format('m');
 $ano_novo = $datetime->format('Y');
 
 if($mes_novo != $mes_atual){
-    $html .= "<tr><td colspan='4' class='month'>>> ".$meses[intval($mes_novo)]." de ".$ano_novo."</td></tr>";
+    $html .= "<tr><td colspan='7' class='month'>>> ".$meses[intval($mes_novo)]." de ".$ano_novo."</td></tr>";
 }
+
+$pagamento = $row["b_pago"] == 0 ? "Não pago" : "Pago {$row["valor_pago"]}";
+$valor_repasse = $row["b_pago"] == 0 ? "<i>".calc_repasse($row["id"])."</i>" : calc_repasse($row["id"]);
+$repasse = $row["b_repasse"] == 0 ? "Não" : "Sim";
 
 $html .= "<tr>
 <td>".$row["numero"]."</td>
 <td>".get_object_perfil($row["dentista"])->nome."</td>
 <td>".get_convenio($row["convenio"])."</td>
+<td>{$pagamento}</td>
+<td>{$valor_repasse}</td>
+<td>{$repasse}</td>
 <td class='datahora'>".$row["datahora"]."</td>
 </tr>";
 

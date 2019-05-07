@@ -412,7 +412,14 @@ $(document).ready( function(){
       if($("#filtro_atendimentos_mes_").val() == '0' && $("#dentista_id").val() == ""){
         window.location = location.protocol + '//' + location.host + location.pathname
       }else{
-        window.location = location.protocol + '//' + location.host + location.pathname+"?mes="+$("#filtro_atendimentos_mes_").val()+"&dentista="+$("#dentista_id").val();
+        if($("#dentista_id").val() && $("#filtro_atendimentos_mes_").val()){
+          window.location = location.protocol + '//' + location.host + location.pathname+"?mes="+$("#filtro_atendimentos_mes_").val()+"&dentista="+$("#dentista_id").val();
+        }else if($("#dentista_id").val()){
+          window.location = location.protocol + '//' + location.host + location.pathname+"?dentista="+$("#dentista_id").val();
+        }else{
+          window.location = location.protocol + '//' + location.host + location.pathname+"?mes="+$("#filtro_atendimentos_mes_").val();
+
+        }
       }         
   })
 
