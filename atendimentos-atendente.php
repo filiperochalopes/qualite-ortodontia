@@ -43,7 +43,7 @@ include "parts/structure/head.php";
                         }
                         ?>  
                     </select><br/>
-                    <table class="table-responsive table-sm simple">
+                    <!-- <table class="table-responsive table-sm simple">
                         <thead>
                             <tr>
                                 <th>Guia</th>
@@ -99,9 +99,96 @@ include "parts/structure/head.php";
                         $mes_atual = $datetime->format('m');
                     }
                     ?>
+
+                    </tbody>
+                    </table> -->
+
+
+                    <table class="table-responsive table-sm simple datatable">
+                        <thead>
+                            <tr>
+                                <th>Guia</th>
+                                <th>Profissional</th>
+                                <th>Paciente</th>
+                                <th>Status</th>
+                                <th>Edição</th>
+                                <th>Atendimento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                    <?php
+                    $meses = array(
+                        "", "Janeiro",
+                        "Fevereiro",
+                        "Março",
+                        "Abril",
+                        "Maio",
+                        "Junho",
+                        "Julho",
+                        "Agosto",
+                        "Setembro",
+                        "Outubro",
+                        "Novembro",
+                        "Dezembro"
+                    );
+
+                    $mes_atual = 0; //reset
+                    
+                    if(isset($_GET["filtro"])){
+                        $pesquisaguias = $mydb->query("SELECT * FROM guias WHERE datahora LIKE '".$_GET['filtro']."%' ORDER BY datahora DESC");
+                    }else{
+                        $pesquisaguias = $mydb->query("SELECT * FROM guias ORDER BY datahora DESC");
+                    }
+
+                    while($row = $pesquisaguias->fetch_assoc()){
+                        $datetime = new DateTime($row["datahora"]);
+                        $dia_novo = $datetime->format('d');
+                        $mes_novo = $datetime->format('m');
+                        $ano_novo = $datetime->format('Y');
+
+                        // if($mes_novo != $mes_atual){
+                        //     echo "<tr><td colspan='7' class='month'>".$meses[intval($mes_novo)]." de ".$ano_novo."</td></tr>";
+                        // }
+
+                        
+
+                        echo "<tr>
+                        <td>".$row["numero"]."</td>
+                        <td>".get_object_perfil($row["dentista"])->nome."</td>
+                        <td>".$row["paciente"]."</td>
+                        <td>".get_status_tag($row["status"])."</td>
+                        <td> <button class='editar' data-toggle=\"modal\" data-target=\"#exampleModal\" data-guia=\"".$row["numero"]."\">Editar</button> </td>
+                        <td>{$dia_novo}/{$mes_novo}/{$ano_novo}</td>
+                        </tr>";
+                        
+                        $mes_atual = $datetime->format('m');
+                    }
+                    ?>
+                    
                     </tbody>
                     </table>
                 </div>
+
+                <script>
+                    $(document).ready( function(){
+                        $('.datatable').DataTable( {
+                            // responsive: true,
+                            "language": {
+                                "search": "Pesquisar:",
+                                "zeroRecords": "Não há informações para serem mostradas",
+                                "processing": "Carregando...",
+                                "info": "Mostrando _START_ a _END_ de _TOTAL_ linhas",
+                                "lengthMenu": "Mostrar _MENU_ linhas por vez",
+                                "paginate": {
+                                    "first":      "Primeiro",
+                                    "last":       "Último",
+                                    "next":       "Próximo",
+                                    "previous":   "Anterior"
+                                },
+                            }
+                        } );
+                    })
+                </script>
 
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

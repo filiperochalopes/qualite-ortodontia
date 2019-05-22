@@ -355,7 +355,14 @@ function highlight($query, $string){
     return $string;
 }
 
-function configuracoes($chave, $n_valores){
+function configuracoes($chave){
+    /* 
+    Nome: configuracoes
+    Utilidade: Capturar dados da tabela de configurações do banco de dados
+    Parâmetros: 
+        $chave (string - nome da propriedade a ser procurada e retornada)
+    */
+    
     global $mydb;
     
      $pesquisaconf = $mydb->query("SELECT * FROM  configuracoes WHERE chave = '$chave'");
@@ -374,4 +381,23 @@ function configuracoes($chave, $n_valores){
     }
 }
 
-?>
+function get_status_tag($status_str){
+    /* 
+    Nome: Get status tag
+    Utilidade: Função que transforma as strings de status do banco de dados em <span> com classes estilizáveis para uma visualização mais intuitiva
+    Parâmetros: 
+        $status_str (string - status atual de atendimento)
+    */
+
+    $css_class = "status_tag ";
+
+    if($status_str == "em atendimento"){
+        $css_class .= "em_atendimento";
+    }else if($status_str == "aguardando atendimento"){
+        $css_class .= "aguardando";
+    }else{
+        $css_class .= "atendido";
+    }
+
+    return "<span class='{$css_class}'>{$status_str}</span>";
+}

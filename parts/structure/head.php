@@ -8,6 +8,10 @@
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
         
+        <!-- VENDOR CSS -->
+        <link rel="stylesheet" href="vendor/DataTables/datatables.min.css" type="text/css" />
+
+        <!-- MAIN CSS -->
         <link rel="stylesheet" href="css/main.css" type="text/css" />
 
         <link rel="icon" href="favicon.ico" type="image/x-icon" />        
@@ -16,5 +20,10 @@
         <!-- <script src="js/zepto.min.js"></script> -->
         <script src="js/jquery.mask.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
+        
+        <!-- VENDOR JS -->
+        <script src="vendor/DataTables/datatables.min.js"></script>
+        
+        <!-- MAIN SCRIPT -->
         <script src="js/main.js"></script>
     </head>

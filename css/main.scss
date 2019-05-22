@@ -223,6 +223,52 @@ table.simple{
 
     span{
         font-size: .5em;
+
+        &.status_tag{
+            font-size: .7em;
+            padding: 2px 7px;
+            border-radius: 2px;
+
+            &.aguardando{
+                background-color: #eb4343;
+            }
+
+            &.em_atendimento{
+                background-color: #c2c465;
+            }
+
+            &.atendido{
+                background-color: #66a541;
+            }
+        }
+    }
+}
+
+/* ---------- DATATABLES ---------- */
+
+table{
+    &.dataTable{
+        border-collapse: collapse;
+        margin: 0 auto;
+
+        &.no-footer{
+            border-bottom: none;
+        }
+    }
+}
+
+.dataTables_info{
+    opacity: .8;
+}
+
+.dataTables_wrapper{
+    .dataTables_paginate{
+        .paginate_button{
+            &:hover{
+                background: $primary;
+                border-color: $primary-dark;
+            }
+        }
     }
 }
 

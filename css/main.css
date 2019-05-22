@@ -13447,6 +13447,43 @@ table.simple span {
   font-size: .5em;
 }
 
+table.simple span.status_tag {
+  font-size: .7em;
+  padding: 2px 7px;
+  border-radius: 2px;
+}
+
+table.simple span.status_tag.aguardando {
+  background-color: #eb4343;
+}
+
+table.simple span.status_tag.em_atendimento {
+  background-color: #c2c465;
+}
+
+table.simple span.status_tag.atendido {
+  background-color: #66a541;
+}
+
+/* ---------- DATATABLES ---------- */
+table.dataTable {
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+table.dataTable.no-footer {
+  border-bottom: none;
+}
+
+.dataTables_info {
+  opacity: .8;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: #6a0704;
+  border-color: #410705;
+}
+
 /* ---------- PÁGINAS ---------- */
 .page {
   min-height: calc(100vh - 60px);
