@@ -523,12 +523,15 @@ $(document).ready( function(){
     });
   })
 
-  $("#atendimento:disabled").click( function(){
-    $("#filtro_relatorio_guias_dentista").focus();
-    aviso({
-      mensagem : "Antes de selecionar uma modalidade de atendimento é necessário selecionar um dentista!",
-      class : "red"
-    });
+  $("select#atendimento").click( function(){
+    if($(this).attr("disabled")){
+      $("#filtro_relatorio_guias_dentista").focus();
+      $(this).attr("disabled", false)
+      aviso({
+        mensagem : "Antes de selecionar uma modalidade de atendimento é necessário selecionar um dentista!",
+        class : "red"
+      });
+    }
   })
 
   /* --------- INICIAR ATENDIMENTO ---------- */

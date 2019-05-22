@@ -12,9 +12,9 @@ if(isset($val)){
 
     // Verifica condicionais de atendimento
     $especialidade = get_info_perfil($val, "especialidade");
-    if(!$especialidade){
+    if(!$especialidade || $especialidade == "CLINICO GERAL"){
         // Não permite atendimento especialista
-        $pesquisaatendimentos = $mydb->query("SELECT * FROM atendimentos WHERE id != 2");                        
+        $pesquisaatendimentos = $mydb->query("SELECT * FROM atendimentos WHERE id != 2");        
     }else{
         // libera todos
         $pesquisaatendimentos = $mydb->query("SELECT * FROM atendimentos"); 
