@@ -650,9 +650,9 @@ $(document).ready( function(){
           });
         }
       }).done(function (data) {         
-        // data = JSON.parse(data);
+        data = JSON.parse(data);
         console.log(data);
-        // aviso(data);
+        aviso(data);
       });
   });
 
