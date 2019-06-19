@@ -1,5 +1,5 @@
 <header class="main">
     <img src="img/logo_vine.jpg"/>
-    <div class="link" data-link="parts/functional/logout.php"><span class="oi oi-account-logout"></span> Sair</div>
+    <div class="link" data-link="parts/functional/logout.php"><i class="fas fa-sign-out-alt"></i> Sair</div>
 </header>
-<div id="main-menu" class="closed"><span class="oi oi-align-left"></span></div>
+<div id="main-menu" class="closed"><i class="fas fa-bars"></i></div>

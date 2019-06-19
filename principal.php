@@ -32,13 +32,13 @@ include "parts/structure/head.php";
                             <ul id="ulnav" class="col-12">                        
                                 <?php
                                 if(isFuncao($idusuario, "dentista")){ ?>
-                                <li class="mb-5"><a href="iniciar-atendimento"><span class="oi oi-play-circle"></span> Iniciar Atendimento</a></li>
-                                <li><a href="meus-atendimentos"><span class="oi oi-list"></span> Meus atendimentos</a></li>
+                                <li class="mb-5"><a href="iniciar-atendimento"><i class="far fa-play-circle"></i> Iniciar Atendimento</a></li>
+                                <li><a href="meus-atendimentos"><i class="far fa-list-alt"></i> Meus atendimentos</a></li>
                                 <?php }else if(isFuncao($idusuario, "administrador")){ 
                                     if(num_dentistas()[1] > 0){ ?>
-                                    <li><a href="validacao-cadastro"><span class="oi oi-task"></span> Você tem <?=num_dentistas()[1]?> cadastro(s) pendentes para validar!</a></li>
+                                    <li><a href="validacao-cadastro"><i class="fas fa-clipboard-check"></i> Você tem <?=num_dentistas()[1]?> cadastro(s) pendentes para validar!</a></li>
                                     <?php }?>
-                                <li><a href="perfil"><span class="oi oi-person"></span> Meus dados cadastrais</a></li>
+                                <li><a href="perfil"><i class="far fa-user"></i> Meus dados cadastrais</a></li>
                                 <?php } ?>
                             </ul>
                         </div>

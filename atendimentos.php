@@ -3,7 +3,7 @@
 require ("parts/functional/checklogin.php");
 require ("functions.php");
 
-//Verifica permissao
+// Verifica permissao
 $permissao = "atendimentos";
 require ("parts/functional/checkpermissao.php");
 

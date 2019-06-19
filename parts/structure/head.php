@@ -20,6 +20,9 @@
         <!-- <script src="js/zepto.min.js"></script> -->
         <script src="js/jquery.mask.min.js"></script>
         <script src="js/bootstrap.bundle.min.js"></script>
+
+        <!-- FONT AWESOME ICONS -->
+        <script src="https://kit.fontawesome.com/41be078e4c.js"></script>
         
         <!-- VENDOR JS -->
         <script src="vendor/DataTables/datatables.min.js"></script>
