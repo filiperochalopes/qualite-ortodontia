@@ -281,7 +281,6 @@ include "parts/structure/head.php";
                         } );
                     })
                 </script>
-                </div>
                 <?php
                 include "parts/structure/footer.php";
                 ?>
