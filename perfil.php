@@ -4,6 +4,8 @@ require ("parts/functional/checklogin.php");
 require ("functions.php");
 require ("config-db.php");
 
+// Não tem necessidade de restrição pois todos os níveis de usuário tem acesso a essa página
+
 include "parts/structure/head.php";
 ?>
 <body>

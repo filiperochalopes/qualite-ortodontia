@@ -4,6 +4,10 @@ require ("parts/functional/checklogin.php");
 require ("functions.php");
 require ("config-db.php");
 
+// Verifica permissao
+$permissao = "novo-atendimento";
+require ("parts/functional/checkpermissao.php");
+
 include "parts/structure/head.php";
 ?>
 <body>

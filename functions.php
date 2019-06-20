@@ -15,9 +15,9 @@ function enviaremail($destinatario, $assunto, $mensagem){
     $Subject = $assunto;
     $Message = $mensagem;
 
-    require 'PHPMailer/src/PHPMailer.php';
-    require 'PHPMailer/src/SMTP.php';
-    require 'PHPMailer/src/Exception.php';
+    require 'vendor/PHPMailer/src/PHPMailer.php';
+    require 'vendor/PHPMailer/src/SMTP.php';
+    require 'vendor/PHPMailer/src/Exception.php';
 
     // inicia a classe PHPMailer habilitando o disparo de exceções
     $mail = new PHPMailer(true);
