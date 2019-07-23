@@ -23,6 +23,9 @@
 
         <!-- FONT AWESOME ICONS -->
         <script src="https://kit.fontawesome.com/41be078e4c.js"></script>
+
+        <!-- Chart.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
         
         <!-- VENDOR JS -->
         <script src="vendor/DataTables/datatables.min.js"></script>
