@@ -13139,6 +13139,19 @@ aside ul li .navitem {
   white-space: nowrap;
 }
 
+aside ul li .num_notificacoes {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 5px;
+  left: 8px;
+  background: #c73434;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  font-size: .8em;
+}
+
 aside ul li:hover {
   color: #6a0704;
 }

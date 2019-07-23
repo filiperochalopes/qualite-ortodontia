@@ -16,7 +16,7 @@
             <?php } ?>
 
             <?php if(permissao("validacao-cadastro")){ ?>
-            <li class="link" data-link="validacao-cadastro"><i class="fas fa-clipboard-check"></i><span class="navitem ml-2">Validação de cadastro <span class="box-sm"><?=num_dentistas()[1]?></span></span></li>
+            <li class="link" data-link="validacao-cadastro"><i class="fas fa-clipboard-check"></i><div class="num_notificacoes"><?=num_dentistas()[1]?></div><span class="navitem ml-2">Validação de cadastro</span></li>
             <?php } ?>
 
             <?php if(permissao("cadastro-dentista")){ ?>

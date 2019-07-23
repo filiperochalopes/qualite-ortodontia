@@ -32,6 +32,19 @@ aside{
                 white-space: nowrap;
             }
 
+            .num_notificacoes{
+                width: 20px;
+                height: 20px;
+                position: absolute;
+                top: 5px;
+                left: 8px;
+                background: $red;
+                color: white;
+                border-radius: 50%;
+                text-align: center;
+                font-size: .8em;
+            }
+
             &:hover{
                 color: $primary;
 
